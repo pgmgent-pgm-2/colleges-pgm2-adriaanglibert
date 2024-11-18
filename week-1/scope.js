@@ -68,7 +68,7 @@ const family = {
 };
 
 function showFamily(family) {
-    console.log("Parent:", family.name);
+    console.log("Name:", family.name);
 
     family.children.forEach(child => {
         showFamily(child);
