@@ -1,0 +1,8 @@
+{
+    "port": 8080,
+    "env": "Production",
+    "connection": {
+        "port": 5432,
+        "username": "Adriaan"
+    }
+}

@@ -1,0 +1,15 @@
+[
+    {
+        "device": "Laptop",
+        "stock": 25,
+        "description": "Krachtige laptop met 16GB RAM en 512GB SSD",
+        "charging": "USB-C"
+    },
+    {
+        "device": "Smartphone",
+        "price": 800,
+        "stock": 50,
+        "description": "Nieuw model smartphone met 128GB opslag en 12MP camera",
+        "charging": null
+    }
+]
