@@ -9,9 +9,10 @@ const myPromise = new Promise((resolvingFunction, rejectingFunction) => {
 
 function fetchData() {
     return new Promise((resolve, reject) => {
-        if (true) {
+        if (3 < 1) {
             reject('Er ging iets mis, 503 error.')
         }
+
         setTimeout(() => {
             const data = { name: "John", age: 30 };
             resolve(data); // Gegevens zijn met succes opgehaald
