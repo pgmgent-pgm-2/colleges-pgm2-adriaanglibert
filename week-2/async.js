@@ -61,3 +61,14 @@ function processData(data) {
 // console.log(
 //     "Nu wordt er andere code uitgevoerd, zoals bijvoorbeeld het toevoegen van event listeners, mogelijkheid om dropdowns te openen, ..."
 // );
+
+async function processData() {
+    const result = await fetchData();
+    console.log('Async/Await', result);
+}
+
+processData();
+
+fetchData().then(data => {
+    console.log('Then', data);
+})

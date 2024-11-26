@@ -43,4 +43,19 @@ function displayResult(result) {
 fetchData()
     .then((data) => processData(data))
     .then((processedData) => displayResult(processedData))
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err))
+    .finally(() => { console.log('Always') });
+
+async function handleData() {
+    try {
+        const data = await fetchData();
+        const processedData = await processData(data);
+        displayResult(processedData);
+    } catch (err) {
+        console.log('Er ging iets mis', err);
+    } finally {
+        console.log('Always executed');
+    }
+}
+
+handleData();
