@@ -10,7 +10,7 @@ countriesPromise
         // return response.text();
         console.log(response);
         if (response.status !== 200) {
-            throw 'Er ging iets mis.';
+            throw 'Er ging iets mis!';
         }
 
         return response.json();
