@@ -59,3 +59,90 @@ async function handleData() {
 }
 
 handleData();
+
+// Oefening 3
+
+function fetchDataWithPromise() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (Math.random() > .3) {
+                resolve('Gegevens opgehaald');
+            } else {
+                reject('Fout bij ophalen van gegevens')
+            }
+        }, 2000);
+    });
+}
+
+fetchDataWithPromise()
+    .then(confirmMessage => {
+        console.log(confirmMessage);
+    })
+    .catch(errorMessage => {
+        console.log(errorMessage);
+    });
+
+const users = [
+    {
+        userId: 1,
+        name: 'Stef'
+    },
+    {
+        userId: 2,
+        name: 'Jan'
+    },
+    {
+        userId: 3,
+        name: 'Piet'
+    }
+]
+
+const posts = [
+    {
+        authorId: 1,
+        message: 'Yolo'
+    },
+    {
+        authorId: 1,
+        message: 'Het sneeuwt'
+    },
+    {
+        authorId: 2,
+        message: 'Let that sink in.'
+    }
+]
+
+// Oefening 4
+function fetchUserData(id) {
+    return new Promise((resolve, reject) => {
+        // Search in db for user width userId
+        const user = users.find(user => user.userId === id);
+
+        if (user) {
+            resolve(user)
+        } else {
+            reject(`Er is geen gebruiker gevonden met user id ${id}`);
+        }
+    });
+}
+
+function fetchUserPosts(user) {
+    return new Promise((resolve, reject) => {
+        const userPosts = posts.filter(post => post.authorId === user.userId);
+
+        if (userPosts.length) {
+            resolve(userPosts);
+        } else {
+            reject('Er zijn geen posts voor deze gebruiker');
+        }
+    });
+}
+
+fetchUserData(2)
+    .then(user => {
+        console.log('Gebruiker is: ', user.name);
+        return fetchUserPosts(user);
+    })
+    .then(posts => {
+        console.log('Posts', posts);
+    })
