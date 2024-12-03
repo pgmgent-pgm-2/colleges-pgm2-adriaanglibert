@@ -62,7 +62,6 @@ async function handleData() {
 handleData();
 
 // Oefening 3
-
 function fetchDataWithPromise() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
