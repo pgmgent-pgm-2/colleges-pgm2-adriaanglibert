@@ -51,6 +51,7 @@ async function handleData() {
         const data = await fetchData();
         const processedData = await processData(data);
         displayResult(processedData);
+        renderData(processedData);
     } catch (err) {
         console.log('Er ging iets mis', err);
     } finally {
@@ -138,6 +139,10 @@ function fetchUserPosts(user) {
     });
 }
 
+function renderData(post) {
+
+}
+
 fetchUserData(2)
     .then(user => {
         console.log('Gebruiker is: ', user.name);
@@ -145,4 +150,5 @@ fetchUserData(2)
     })
     .then(posts => {
         console.log('Posts', posts);
+        renderData(posts);
     })

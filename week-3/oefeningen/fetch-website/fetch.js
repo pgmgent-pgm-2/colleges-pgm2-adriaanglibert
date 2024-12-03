@@ -28,7 +28,7 @@ async function getData(callback = null) {
     try {
         const response = await fetch('https://restcountries.com/v3.1/independent?status=true&fields=languages,capitals', {
             method: 'POST',
-            body: 'Nieuw lang'
+            body: 'Nieuw land'
         });
         const data = await response.json();
         if (callback) {
