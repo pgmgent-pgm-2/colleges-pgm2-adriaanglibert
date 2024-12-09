@@ -35,3 +35,4 @@ console.log(msg); // Oh no!
 
 
 const {belgium: bPrice, ...otherCountriesPrices} = productPrices;
+
