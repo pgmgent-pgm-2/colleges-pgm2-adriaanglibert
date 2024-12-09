@@ -6,13 +6,18 @@ const fs = require('fs');
 
 // const pathToFacts = '/documents/facts.json';
 const pathToFacts = path.join('documents', 'facts.json');
+
 const facts = fs.readFile(pathToFacts, "utf-8", (err, data) => {
     const originalFacts = JSON.parse(data);
-    const newFacts = originalFacts.push('Cats are awesome!');
+    const newFacts = originalFacts.concat({ fact: 'Cats are awesome!' });
 
     fs.writeFile(pathToFacts, JSON.stringify(newFacts), (err) => {
-        console.log('Error bij het schrijven van een bestand', err);
+        if (err) {
+            console.log('Error bij het schrijven van een bestand', err);
+        }
     });
+
+    return newFacts;
 });
 
 
