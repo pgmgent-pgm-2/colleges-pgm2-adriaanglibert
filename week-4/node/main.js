@@ -1,7 +1,6 @@
 const { division, multiply } = require('./modules/calculations.js');
 const { round, upperFirst } = require('lodash');
-
-
+const lodash = require('lodash');
 
 // console.log(calculations.division(20, 2));
 console.log(division(20, 2));
