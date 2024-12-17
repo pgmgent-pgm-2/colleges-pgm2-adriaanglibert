@@ -11,14 +11,28 @@
             <h1>Blog</h1>
 
             <section>
+                <h2>Post toevoegen</h2>
+
+                <form id="create-form">
+                    <label for="title">Titel</label>
+                    <input id="title" type="text">
+
+                    <label for="description">Description</label>
+                    <textarea id="description" type="text"></textarea>
+
+                    <button type="submit">Post aanmaken</button>
+                </form>
+            </section>
+
+            <section>
                 <h2>Laatste nieuws</h2>
 
-                <ul id="news">
+                <div id="news">
 
-                </ul>
+                </div>
             </section>
         </main>
 
-        <script src="./main.js"></script>
+        <script src="./main.js" type="module"></script>
     </body>
 </html>
