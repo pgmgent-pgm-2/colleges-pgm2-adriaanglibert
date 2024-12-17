@@ -1,12 +1,18 @@
 const path = require('path');
 const fsp = require('fs/promises');
 
+const { generateID } = require('../helpers/utils');
+
 const postPath = path.join(__dirname, '..', 'data', 'posts.json');
 
 async function getDataFromFile() {
     const originalData = await fsp.readFile(postPath, 'utf-8');
     const posts = JSON.parse(originalData);
     return posts;
+}
+
+async function writeDataToFile(data) {
+    await fsp.writeFile(postPath, JSON.stringify(data, null, 2));
 }
 
 async function getPosts(request, response) {
@@ -21,8 +27,13 @@ async function getPosts(request, response) {
 async function createPost(request, response) {
     try {
         const posts = await getDataFromFile();
-        posts.push(request.body);
-        await fsp.writeFile(postPath, JSON.stringify(posts, null, 2));
+
+        posts.push({
+            id: generateID(),
+            ...request.body
+        });
+
+        await writeDataToFile(posts);
         response.json({
             "message": "Er is een nieuwe post toegevoegd"
         });
@@ -31,10 +42,18 @@ async function createPost(request, response) {
     }
 }
 
-// Zorg dat je een post kan deleten.
-// Tip: Posts hebben elk een ID nodig.
+async function deletePost(request, response) {
+    const { id } = request.params;
+    const posts = await getDataFromFile();
+    const updatedPosts = posts.filter(post => post.id !== id);
+    await writeDataToFile(updatedPosts);
+    response.json({
+        "message": `We hebben post met id ${id} verwijderd.`
+    });
+}
 
 module.exports = {
     getPosts,
-    createPost
+    createPost,
+    deletePost
 }

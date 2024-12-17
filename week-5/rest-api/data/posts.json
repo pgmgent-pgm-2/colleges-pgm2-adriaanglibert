@@ -1,14 +1,22 @@
 [
   {
-    "title": "Test",
-    "description": "Test"
+    "id": "178f6c07-08cc-41e3-b134-d16aaaa11b28",
+    "title": "Title",
+    "description": "Beschrijving"
   },
   {
-    "title": "Mijn vijfde post",
-    "description": "Mijn vijfde post inhoud."
+    "id": "5e56df4b-7241-4c95-8de7-a1a4e6b9b147",
+    "title": "Title",
+    "description": "Beschrijving"
   },
   {
-    "title": "Mijn vijfde post",
-    "description": "Mijn vijfde post inhoud."
+    "id": "121d854d-3c79-4ca7-bc19-3bd213673c54",
+    "title": "Title",
+    "description": "Beschrijving"
+  },
+  {
+    "id": "a5570348-1e4c-4f4a-9ad4-e5c6b99a7d7c",
+    "title": "Title",
+    "description": "Beschrijving"
   }
 ]
