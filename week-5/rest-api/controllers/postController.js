@@ -3,21 +3,36 @@ const fsp = require('fs/promises');
 
 const postPath = path.join(__dirname, '..', 'data', 'posts.json');
 
+async function getDataFromFile() {
+    const originalData = await fsp.readFile(postPath, 'utf-8');
+    const posts = JSON.parse(originalData);
+    return posts;
+}
+
 async function getPosts(request, response) {
-    const data = await fsp.readFile(postPath, 'utf-8');
-    const posts = JSON.parse(data);
-    response.json(posts);
+    try {
+        const posts = await getDataFromFile();
+        response.json(posts);
+    } catch (error) {
+        response.status(500).json(error);
+    }
 }
 
 async function createPost(request, response) {
-    const originalData = await fsp.readFile(postPath, 'utf-8');
-    const posts = JSON.parse(originalData);
-    posts.push(request.body);
-    await fsp.writeFile(postPath, JSON.stringify(posts, null, 2));
-    response.json({
-        "message": "Er is een nieuwe post toegevoegd"
-    });
+    try {
+        const posts = await getDataFromFile();
+        posts.push(request.body);
+        await fsp.writeFile(postPath, JSON.stringify(posts, null, 2));
+        response.json({
+            "message": "Er is een nieuwe post toegevoegd"
+        });
+    } catch (error) {
+        response.status(500).json(error);
+    }
 }
+
+// Zorg dat je een post kan deleten.
+// Tip: Posts hebben elk een ID nodig.
 
 module.exports = {
     getPosts,
