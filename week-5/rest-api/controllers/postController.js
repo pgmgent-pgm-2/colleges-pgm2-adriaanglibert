@@ -1,41 +1,22 @@
 const path = require('path');
-const fs = require('fs');
+const fsp = require('fs/promises');
 
 const postPath = path.join(__dirname, '..', 'data', 'posts.json');
 
-function getDataFromDatabase(callback) {
-    fs.readFile(postPath, { encoding: 'utf-8' }, (err, data) => {
-        response.json(JSON.parse(data));
-    });
+async function getPosts(request, response) {
+    const data = await fsp.readFile(postPath, 'utf-8');
+    const posts = JSON.parse(data);
+    response.json(posts);
 }
 
-function getPosts(request, response) {
-    fs.readFile(postPath, { encoding: 'utf-8' }, (err, data) => {
-        response.json(JSON.parse(data));
-    });
-
-    // getDataFromDatabase()
-}
-
-function createPost(request, response) {
-    console.log(request.body);
-
-    fs.readFile(postPath, { encoding: 'utf-8' }, (err, data) => {
-        const posts = JSON.parse(data);
-        posts.push(request.body);
-
-        fs.writeFile(postPath, JSON.stringify(posts, null, 2), (err) => {
-            if (err) {
-                console.error(err);
-                response.status(500).json({ error: 'Failed to save post' });
-                return;
-            }
-        });
-    });
-
+async function createPost(request, response) {
+    const originalData = await fsp.readFile(postPath, 'utf-8');
+    const posts = JSON.parse(originalData);
+    posts.push(request.body);
+    await fsp.writeFile(postPath, JSON.stringify(posts, null, 2));
     response.json({
         "message": "Er is een nieuwe post toegevoegd"
-    })
+    });
 }
 
 module.exports = {

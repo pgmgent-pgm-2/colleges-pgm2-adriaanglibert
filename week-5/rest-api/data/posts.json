@@ -1,18 +1,14 @@
 [
   {
-    "title": "Post 1",
-    "description": "Beschrijving van post 1"
+    "title": "Test",
+    "description": "Test"
   },
   {
-    "title": "Post 2",
-    "description": "Beschrijving van post 2"
+    "title": "Mijn vijfde post",
+    "description": "Mijn vijfde post inhoud."
   },
   {
-    "title": "Post 3",
-    "description": "Beschrijving van post 3"
-  },
-  {
-    "title": "Mijn vierde post",
-    "description": "Mijn post inhoud."
+    "title": "Mijn vijfde post",
+    "description": "Mijn vijfde post inhoud."
   }
 ]
