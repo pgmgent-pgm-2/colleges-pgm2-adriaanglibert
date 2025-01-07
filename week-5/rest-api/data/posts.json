@@ -2,6 +2,12 @@
   {
     "id": "fda8ef0e-cd10-4db9-8a91-16a0444a8e0a",
     "title": "Test",
-    "description": "Hallo"
+    "description": "Hallo",
+    "author": "a3"
+  },
+  {
+    "id": "100c000f-6db4-461d-9ddd-ad37b91f24df",
+    "title": "Hey lieve studenten",
+    "description": "Beschrijving"
   }
 ]

@@ -24,6 +24,21 @@ async function getPosts(request, response) {
     }
 }
 
+async function getPost(request, response) {
+    try {
+        const posts = await getDataFromFile();
+        const { postId } = request.params;
+        const post = posts.find(post => post.id === postId);
+        if (post) {
+            response.json(post);
+        } else {
+            throw new Error('Er is geen post gevonden met deze ID.');
+        }
+    } catch (error) {
+        response.status(500).json(error.message)
+    }
+}
+
 async function createPost(request, response) {
     try {
         const posts = await getDataFromFile();
@@ -54,6 +69,7 @@ async function deletePost(request, response) {
 
 module.exports = {
     getPosts,
+    getPost,
     createPost,
     deletePost
 }

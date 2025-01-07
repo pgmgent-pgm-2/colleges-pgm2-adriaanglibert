@@ -27,14 +27,15 @@ function addListenerToButtons($buttons) {
 function showPosts(posts) {
     const $list = document.getElementById('news');
 
-    $list.innerHTML = posts.map(post => `<article>
-                <strong>${post.title}</strong>
-                <p>${post.description}</p>
-                <button data-uuid='${post.id}'>Delete</button>
-            </article>`).join('');
+    if ($list) {
+        $list.innerHTML = posts.map(post => `<a href='/detail.html?id=${post.id}'><article>
+                    <strong>${post.title}</strong>
+                    <button data-uuid='${post.id}'>Delete</button>
+                </article></a>`).join('');
 
-    const $buttons = document.querySelectorAll('button[data-uuid]');
-    addListenerToButtons($buttons);
+        const $buttons = document.querySelectorAll('button[data-uuid]');
+        addListenerToButtons($buttons);
+    }
 }
 
 getPosts();
